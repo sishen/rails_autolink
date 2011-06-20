@@ -82,7 +82,7 @@ module RailsAutolink
           # is yielded and the result is used as the link text.
           def auto_link_urls(text, html_options = {}, options = {})
             link_attributes = html_options.stringify_keys
-            text.gsub(AUTO_LINK_RE) do
+            text.to_s.gsub(AUTO_LINK_RE) do
               scheme, href = $1, $&
               punctuation = []
 
@@ -114,7 +114,7 @@ module RailsAutolink
           # Turns all email addresses into clickable links.  If a block is given,
           # each email is yielded and the result is used as the link text.
           def auto_link_email_addresses(text, html_options = {}, options = {})
-            text.gsub(AUTO_EMAIL_RE) do
+            text.to_s.gsub(AUTO_EMAIL_RE) do
               text = $&
 
               if auto_linked?($`, $')
